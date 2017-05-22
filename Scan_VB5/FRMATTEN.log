@@ -1,0 +1,18 @@
+Line 172: Class Threed.SSCheck of control autoupdate was not a loaded control class.
+Line 195: Class Spin.SpinButton of control spinChange was not a loaded control class.
+Line 208: Class Spin.SpinButton of control spinChange was not a loaded control class.
+Line 178: The property name _Version in autoupdate is invalid.
+Line 179: The property name _ExtentX in autoupdate is invalid.
+Line 180: The property name _ExtentY in autoupdate is invalid.
+Line 181: The property name _StockProps in autoupdate is invalid.
+Line 182: The property name Caption in autoupdate is invalid.
+Line 192: The property name Alignment in autoupdate is invalid.
+Line 193: The property name Value in autoupdate is invalid.
+Line 202: The property name _Version in spinChange is invalid.
+Line 203: The property name _ExtentX in spinChange is invalid.
+Line 204: The property name _ExtentY in spinChange is invalid.
+Line 205: The property name _StockProps in spinChange is invalid.
+Line 215: The property name _Version in spinChange is invalid.
+Line 216: The property name _ExtentX in spinChange is invalid.
+Line 217: The property name _ExtentY in spinChange is invalid.
+Line 218: The property name _StockProps in spinChange is invalid.

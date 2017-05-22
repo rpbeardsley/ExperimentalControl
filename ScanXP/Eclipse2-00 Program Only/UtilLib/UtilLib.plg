@@ -1,0 +1,90 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: UtilLib - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\PHONON~1\LOCALS~1\Temp\RSPB.tmp" with contents
+[
+/nologo /MDd /W3 /GR /GX /Zi /Od /I "..\\" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /Fp"Debug/UtilLib.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /c 
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\AnalysisUtils.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\Complex.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\ComplexArray.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\ComplexExp.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\CRC.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\DaoUtils.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\FileUtils.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\indicators.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\IntegralSecondsEntry.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\MyControls.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\Notifier.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\NumberUtils.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\OhmEditBox.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\ProgressDlg.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\ScreenBuffer.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\statistics.cpp"
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\StretchedBitmapStatic.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\PHONON~1\LOCALS~1\Temp\RSPB.tmp" 
+Creating temporary file "C:\DOCUME~1\PHONON~1\LOCALS~1\Temp\RSPC.tmp" with contents
+[
+/nologo /MDd /W3 /GR /GX /Zi /Od /I "..\\" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /Fp"Debug/UtilLib.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /c 
+"C:\Documents and Settings\phononshared\Desktop\Eclipse2-00 Program Only\UtilLib\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\PHONON~1\LOCALS~1\Temp\RSPC.tmp" 
+Creating temporary file "C:\DOCUME~1\PHONON~1\LOCALS~1\Temp\RSPD.tmp" with contents
+[
+/nologo /out:"Debug\UtilLib.lib" 
+".\Debug\AnalysisUtils.obj"
+".\Debug\Complex.obj"
+".\Debug\ComplexArray.obj"
+".\Debug\ComplexExp.obj"
+".\Debug\CRC.obj"
+".\Debug\DaoUtils.obj"
+".\Debug\FileUtils.obj"
+".\Debug\indicators.obj"
+".\Debug\IntegralSecondsEntry.obj"
+".\Debug\MyControls.obj"
+".\Debug\Notifier.obj"
+".\Debug\NumberUtils.obj"
+".\Debug\OhmEditBox.obj"
+".\Debug\ProgressDlg.obj"
+".\Debug\ScreenBuffer.obj"
+".\Debug\statistics.obj"
+".\Debug\StdAfx.obj"
+".\Debug\StretchedBitmapStatic.obj"
+]
+Creating command line "link.exe -lib @C:\DOCUME~1\PHONON~1\LOCALS~1\Temp\RSPD.tmp"
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+AnalysisUtils.cpp
+Complex.cpp
+ComplexArray.cpp
+ComplexExp.cpp
+CRC.cpp
+DaoUtils.cpp
+FileUtils.cpp
+indicators.cpp
+IntegralSecondsEntry.cpp
+MyControls.cpp
+Notifier.cpp
+NumberUtils.cpp
+OhmEditBox.cpp
+ProgressDlg.cpp
+ScreenBuffer.cpp
+statistics.cpp
+StretchedBitmapStatic.cpp
+Generating Code...
+Creating library...
+
+
+
+<h3>Results</h3>
+UtilLib.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

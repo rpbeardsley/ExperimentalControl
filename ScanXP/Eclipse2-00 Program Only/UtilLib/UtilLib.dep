@@ -1,0 +1,149 @@
+# Microsoft Developer Studio Generated Dependency File, included by UtilLib.mak
+
+.\AnalysisUtils.cpp : \
+	".\AnalysisExceptionBase.cpp"\
+	".\AnalysisExceptionBase.h"\
+	".\DimTemplate.h"\
+	".\EChemUnits.cpp"\
+	".\EChemUnits.h"\
+	".\Length.cpp"\
+	".\Length.h"\
+	".\Marqbase.cpp"\
+	".\marqbase.h"\
+	".\MarqResults.cpp"\
+	".\MarqResults.h"\
+	".\mass.cpp"\
+	".\Mass.h"\
+	".\mathfit.cpp"\
+	".\mathfit.h"\
+	".\matrix.h"\
+	".\metric.cpp"\
+	".\Metric.h"\
+	".\NRCUtil.h"\
+	".\NumericExceptionEnable.cpp"\
+	".\NumericExceptionEnable.h"\
+	".\SchFitException.cpp"\
+	".\SchFitException.h"\
+	".\sgfilter.cpp"\
+	".\SGFilter.h"\
+	".\SpecTime.cpp"\
+	".\spectime.h"\
+	".\spline.cpp"\
+	".\Spline.h"\
+	".\Stdafx.h"\
+	".\UnitsTemplate.h"\
+	".\values.cpp"\
+	".\Values.h"\
+	".\vector.h"\
+	".\volume.cpp"\
+	".\Volume.h"\
+	
+
+.\Complex.cpp : \
+	".\Complex.h"\
+	".\Stdafx.h"\
+	
+
+.\ComplexArray.cpp : \
+	".\Complex.h"\
+	".\NumberUtils.h"\
+	".\Stdafx.h"\
+	
+
+.\ComplexExp.cpp : \
+	".\Complex.h"\
+	".\Stdafx.h"\
+	
+
+.\CRC.cpp : \
+	".\CRC.h"\
+	".\Stdafx.h"\
+	
+
+.\DaoUtils.cpp : \
+	".\DaoUtils.h"\
+	".\List.h"\
+	".\NumberUtils.h"\
+	".\Stdafx.h"\
+	
+
+.\FileUtils.cpp : \
+	".\FileUtils.h"\
+	".\Stdafx.h"\
+	
+
+.\indicators.cpp : \
+	".\Indicators.h"\
+	".\Stdafx.h"\
+	
+
+.\IntegralSecondsEntry.cpp : \
+	".\IntegralSecondsEntry.h"\
+	".\List.h"\
+	".\MyControls.h"\
+	".\MyControlsTmplt.h"\
+	".\Notifier.h"\
+	".\NumberUtils.h"\
+	".\Stdafx.h"\
+	".\ThreadUtils.h"\
+	
+
+.\MyControls.cpp : \
+	".\List.h"\
+	".\MyControls.h"\
+	".\MyControlsTmplt.h"\
+	".\Notifier.h"\
+	".\Stdafx.h"\
+	".\ThreadUtils.h"\
+	
+
+.\Notifier.cpp : \
+	".\Notifier.h"\
+	".\Stdafx.h"\
+	".\ThreadUtils.h"\
+	
+
+.\NumberUtils.cpp : \
+	".\NumberUtils.h"\
+	".\Stdafx.h"\
+	
+
+.\OhmEditBox.cpp : \
+	".\List.h"\
+	".\MyControls.h"\
+	".\MyControlsTmplt.h"\
+	".\Notifier.h"\
+	".\OhmEditBox.h"\
+	".\Stdafx.h"\
+	".\ThreadUtils.h"\
+	
+
+.\ProgressDlg.cpp : \
+	".\List.h"\
+	".\MyControls.h"\
+	".\MyControlsTmplt.h"\
+	".\Notifier.h"\
+	".\ProgressDlg.h"\
+	".\Stdafx.h"\
+	".\ThreadUtils.h"\
+	
+
+.\ScreenBuffer.cpp : \
+	".\ScreenBuffer.h"\
+	".\Stdafx.h"\
+	
+
+.\statistics.cpp : \
+	".\Complex.h"\
+	".\statistics.h"\
+	".\Stdafx.h"\
+	
+
+.\StdAfx.cpp : \
+	".\Stdafx.h"\
+	
+
+.\StretchedBitmapStatic.cpp : \
+	".\Stdafx.h"\
+	".\StretchedBitmapStatic.h"\
+	
