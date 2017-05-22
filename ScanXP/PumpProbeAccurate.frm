@@ -212,7 +212,9 @@ Begin VB.Form PumpProbeAccurate
    End
    Begin VB.ComboBox Combo1 
       Height          =   315
+      ItemData        =   "PumpProbeAccurate.frx":0000
       Left            =   7080
+      List            =   "PumpProbeAccurate.frx":0002
       TabIndex        =   1
       Text            =   "Combo1"
       Top             =   4440
@@ -583,6 +585,11 @@ Private startpoint
 Private distperpoint
 Private numpoints As Integer
 Private isset As Boolean
+Private Declare Function PlaySound Lib "winmm.dll" Alias "PlaySoundA" (ByVal lpszName As String, ByVal hModule As Long, ByVal dwFlags As Long) As Long
+
+
+
+
 
 Private Sub Combo2_Click()
 
@@ -640,7 +647,7 @@ Private Sub Command1_Click()
     Else
         MultiMeasure
     End If
-
+    a = PlaySound("SHRTALRM.wav", 0, 0)
 End Sub
 
 Private Sub SingleScan()
@@ -659,7 +666,8 @@ Private Sub SingleScan()
         GoTo fin
     End If
 
-    If CDec(Int(distperpoint / NanoStep.GetSmallestNanoStep)) <> CDec(distperpoint / NanoStep.GetSmallestNanoStep) Then
+    smnanostep = NanoStep.GetSmallestNanoStep
+    If Abs(CDec(Int(distperpoint / smnanostep)) - CDec(distperpoint / smnanostep)) > 0.0001 Then
         MsgBox "Step size does not correspond to an integer number of motor movements.", vbExclamation, "Error"
         ret = 0
         GoTo fin
@@ -956,7 +964,7 @@ Private Sub Form_Load()
     Combo1.AddItem "256 Hz"
     Combo1.AddItem "512 Hz"
     Combo1.AddItem "Trigger"
-    Combo1.ListIndex = 7
+    Combo1.ListIndex = 8
     
     Combo2.Clear
     Combo2.AddItem "None"
@@ -988,6 +996,9 @@ Private Sub Form_Load()
     
     stopscan = False
     
+    Text4.Text = "c:\data\2008\"
+    Text2.Text = "100"
+        
 End Sub
 
 Private Function GetPoint(ByRef X, ByRef Y, addr As Integer, addrY As Integer)

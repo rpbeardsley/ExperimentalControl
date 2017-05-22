@@ -23,38 +23,38 @@ Option Explicit
 
 Declare Function ibask32 Lib "Gpib-32.dll" Alias "ibask" (ByVal ud As Long, ByVal opt As Long, value As Long) As Long
 Declare Function ibbna32 Lib "Gpib-32.dll" Alias "ibbnaA" (ByVal ud As Long, sstr As Any) As Long
-Declare Function ibcac32 Lib "Gpib-32.dll" Alias "ibcac" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibcac32 Lib "Gpib-32.dll" Alias "ibcac" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibclr32 Lib "Gpib-32.dll" Alias "ibclr" (ByVal ud As Long) As Long
 Declare Function ibcmd32 Lib "Gpib-32.dll" Alias "ibcmd" (ByVal ud As Long, sstr As Any, ByVal cnt As Long) As Long
 Declare Function ibcmda32 Lib "Gpib-32.dll" Alias "ibcmda" (ByVal ud As Long, sstr As Any, ByVal cnt As Long) As Long
-Declare Function ibconfig32 Lib "Gpib-32.dll" Alias "ibconfig" (ByVal ud As Long, ByVal opt As Long, ByVal v As Long) As Long
+Declare Function ibconfig32 Lib "Gpib-32.dll" Alias "ibconfig" (ByVal ud As Long, ByVal opt As Long, ByVal V As Long) As Long
 Declare Function ibdev32 Lib "Gpib-32.dll" Alias "ibdev" (ByVal bdid As Long, ByVal pad As Long, ByVal sad As Long, ByVal tmo As Long, ByVal eot As Long, ByVal eos As Long) As Long
-Declare Function ibdma32 Lib "Gpib-32.dll" Alias "ibdma" (ByVal ud As Long, ByVal v As Long) As Long
-Declare Function ibeos32 Lib "Gpib-32.dll" Alias "ibeos" (ByVal ud As Long, ByVal v As Long) As Long
-Declare Function ibeot32 Lib "Gpib-32.dll" Alias "ibeot" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibdma32 Lib "Gpib-32.dll" Alias "ibdma" (ByVal ud As Long, ByVal V As Long) As Long
+Declare Function ibeos32 Lib "Gpib-32.dll" Alias "ibeos" (ByVal ud As Long, ByVal V As Long) As Long
+Declare Function ibeot32 Lib "Gpib-32.dll" Alias "ibeot" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibfind32 Lib "Gpib-32.dll" Alias "ibfindA" (sstr As Any) As Long
-Declare Function ibgts32 Lib "Gpib-32.dll" Alias "ibgts" (ByVal ud As Long, ByVal v As Long) As Long
-Declare Function ibist32 Lib "Gpib-32.dll" Alias "ibist" (ByVal ud As Long, ByVal v As Long) As Long
-Declare Function iblines32 Lib "Gpib-32.dll" Alias "iblines" (ByVal ud As Long, v As Long) As Long
+Declare Function ibgts32 Lib "Gpib-32.dll" Alias "ibgts" (ByVal ud As Long, ByVal V As Long) As Long
+Declare Function ibist32 Lib "Gpib-32.dll" Alias "ibist" (ByVal ud As Long, ByVal V As Long) As Long
+Declare Function iblines32 Lib "Gpib-32.dll" Alias "iblines" (ByVal ud As Long, V As Long) As Long
 Declare Function ibln32 Lib "Gpib-32.dll" Alias "ibln" (ByVal ud As Long, ByVal pad As Long, ByVal sad As Long, ln As Long) As Long
 Declare Function ibloc32 Lib "Gpib-32.dll" Alias "ibloc" (ByVal ud As Long) As Long
 Declare Function iblock32 Lib "Gpib-32.dll" Alias "iblock" (ByVal ud As Long) As Long
-Declare Function ibonl32 Lib "Gpib-32.dll" Alias "ibonl" (ByVal ud As Long, ByVal v As Long) As Long
-Declare Function ibpad32 Lib "Gpib-32.dll" Alias "ibpad" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibonl32 Lib "Gpib-32.dll" Alias "ibonl" (ByVal ud As Long, ByVal V As Long) As Long
+Declare Function ibpad32 Lib "Gpib-32.dll" Alias "ibpad" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibpct32 Lib "Gpib-32.dll" Alias "ibpct" (ByVal ud As Long) As Long
-Declare Function ibppc32 Lib "Gpib-32.dll" Alias "ibppc" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibppc32 Lib "Gpib-32.dll" Alias "ibppc" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibrd32 Lib "Gpib-32.dll" Alias "ibrd" (ByVal ud As Long, sstr As Any, ByVal cnt As Long) As Long
 Declare Function ibrda32 Lib "Gpib-32.dll" Alias "ibrda" (ByVal ud As Long, sstr As Any, ByVal cnt As Long) As Long
 Declare Function ibrdf32 Lib "Gpib-32.dll" Alias "ibrdfA" (ByVal ud As Long, sstr As Any) As Long
 Declare Function ibrpp32 Lib "Gpib-32.dll" Alias "ibrpp" (ByVal ud As Long, sstr As Any) As Long
-Declare Function ibrsc32 Lib "Gpib-32.dll" Alias "ibrsc" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibrsc32 Lib "Gpib-32.dll" Alias "ibrsc" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibrsp32 Lib "Gpib-32.dll" Alias "ibrsp" (ByVal ud As Long, sstr As Any) As Long
-Declare Function ibrsv32 Lib "Gpib-32.dll" Alias "ibrsv" (ByVal ud As Long, ByVal v As Long) As Long
-Declare Function ibsad32 Lib "Gpib-32.dll" Alias "ibsad" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibrsv32 Lib "Gpib-32.dll" Alias "ibrsv" (ByVal ud As Long, ByVal V As Long) As Long
+Declare Function ibsad32 Lib "Gpib-32.dll" Alias "ibsad" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibsic32 Lib "Gpib-32.dll" Alias "ibsic" (ByVal ud As Long) As Long
-Declare Function ibsre32 Lib "Gpib-32.dll" Alias "ibsre" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibsre32 Lib "Gpib-32.dll" Alias "ibsre" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibstop32 Lib "Gpib-32.dll" Alias "ibstop" (ByVal ud As Long) As Long
-Declare Function ibtmo32 Lib "Gpib-32.dll" Alias "ibtmo" (ByVal ud As Long, ByVal v As Long) As Long
+Declare Function ibtmo32 Lib "Gpib-32.dll" Alias "ibtmo" (ByVal ud As Long, ByVal V As Long) As Long
 Declare Function ibtrg32 Lib "Gpib-32.dll" Alias "ibtrg" (ByVal ud As Long) As Long
 Declare Function ibunlock32 Lib "Gpib-32.dll" Alias "ibunlock" (ByVal ud As Long) As Long
 Declare Function ibwait32 Lib "Gpib-32.dll" Alias "ibwait" (ByVal ud As Long, ByVal mask As Long) As Long
@@ -62,7 +62,7 @@ Declare Function ibwrt32 Lib "Gpib-32.dll" Alias "ibwrt" (ByVal ud As Long, sstr
 Declare Function ibwrta32 Lib "Gpib-32.dll" Alias "ibwrta" (ByVal ud As Long, sstr As Any, ByVal cnt As Long) As Long
 Declare Function ibwrtf32 Lib "Gpib-32.dll" Alias "ibwrtfA" (ByVal ud As Long, sstr As Any) As Long
 Declare Sub AllSpoll32 Lib "Gpib-32.dll" Alias "AllSpoll" (ByVal ud As Long, arg1 As Any, arg2 As Any)
-Declare Sub DevClear32 Lib "Gpib-32.dll" Alias "DevClear" (ByVal ud As Long, ByVal v As Long)
+Declare Sub DevClear32 Lib "Gpib-32.dll" Alias "DevClear" (ByVal ud As Long, ByVal V As Long)
 Declare Sub DevClearList32 Lib "Gpib-32.dll" Alias "DevClearList" (ByVal ud As Long, arg1 As Any)
 Declare Sub EnableLocal32 Lib "Gpib-32.dll" Alias "EnableLocal" (ByVal ud As Long, arg1 As Any)
 Declare Sub EnableRemote32 Lib "Gpib-32.dll" Alias "EnableRemote" (ByVal ud As Long, arg1 As Any)
@@ -233,14 +233,14 @@ Sub ibbna(ByVal ud As Integer, ByVal udname As String)
     Call copy_ibvars
 End Sub
 
-Sub ibcac(ByVal ud As Integer, ByVal v As Integer)
+Sub ibcac(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibcac32(ud, v)
+    Call ibcac32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -292,14 +292,14 @@ Sub ibcmda(ByVal ud As Integer, ByVal buf As String)
     Call copy_ibvars
 End Sub
 
-Sub ibconfig(ByVal bdid As Integer, ByVal opt As Integer, ByVal v As Integer)
+Sub ibconfig(ByVal bdid As Integer, ByVal opt As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibconfig32(bdid, opt, v)
+    Call ibconfig32(bdid, opt, V)
 
     Call copy_ibvars
 End Sub
@@ -317,38 +317,38 @@ Sub ibdev(ByVal bdid As Integer, ByVal pad As Integer, ByVal sad As Integer, ByV
 End Sub
 
 
-Sub ibdma(ByVal ud As Integer, ByVal v As Integer)
+Sub ibdma(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibdma32(ud, v)
+    Call ibdma32(ud, V)
 
     Call copy_ibvars
 End Sub
 
-Sub ibeos(ByVal ud As Integer, ByVal v As Integer)
+Sub ibeos(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibeos32(ud, v)
+    Call ibeos32(ud, V)
 
     Call copy_ibvars
 End Sub
 
-Sub ibeot(ByVal ud As Integer, ByVal v As Integer)
+Sub ibeot(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibeot32(ud, v)
+    Call ibeot32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -367,26 +367,26 @@ Sub ibfind(ByVal udname As String, ud As Integer)
     Call copy_ibvars
 End Sub
 
-Sub ibgts(ByVal ud As Integer, ByVal v As Integer)
+Sub ibgts(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibgts32(ud, v)
+    Call ibgts32(ud, V)
 
     Call copy_ibvars
 End Sub
 
-Sub ibist(ByVal ud As Integer, ByVal v As Integer)
+Sub ibist(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibist32(ud, v)
+    Call ibist32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -435,26 +435,26 @@ Sub ibloc(ByVal ud As Integer)
     Call copy_ibvars
 End Sub
 
-Sub ibonl(ByVal ud As Integer, ByVal v As Integer)
+Sub ibonl(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibonl32(ud, v)
+    Call ibonl32(ud, V)
 
     Call copy_ibvars
 End Sub
 
-Sub ibpad(ByVal ud As Integer, ByVal v As Integer)
+Sub ibpad(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibpad32(ud, v)
+    Call ibpad32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -473,14 +473,14 @@ End Sub
 
 
 
-Sub ibppc(ByVal ud As Integer, ByVal v As Integer)
+Sub ibppc(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibppc32(ud, v)
+    Call ibppc32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -577,14 +577,14 @@ Sub ibrpp(ByVal ud As Integer, ppr As Integer)
     Call copy_ibvars
 End Sub
 
-Sub ibrsc(ByVal ud As Integer, ByVal v As Integer)
+Sub ibrsc(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibrsc32(ud, v)
+    Call ibrsc32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -605,26 +605,26 @@ Sub ibrsp(ByVal ud As Integer, spr As Integer)
     Call copy_ibvars
 End Sub
 
-Sub ibrsv(ByVal ud As Integer, ByVal v As Integer)
+Sub ibrsv(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibrsv32(ud, v)
+    Call ibrsv32(ud, V)
 
     Call copy_ibvars
 End Sub
 
-Sub ibsad(ByVal ud As Integer, ByVal v As Integer)
+Sub ibsad(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibsad32(ud, v)
+    Call ibsad32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -641,14 +641,14 @@ Sub ibsic(ByVal ud As Integer)
     Call copy_ibvars
 End Sub
 
-Sub ibsre(ByVal ud As Integer, ByVal v As Integer)
+Sub ibsre(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibsre32(ud, v)
+    Call ibsre32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -665,14 +665,14 @@ Sub ibstop(ByVal ud As Integer)
     Call copy_ibvars
 End Sub
 
-Sub ibtmo(ByVal ud As Integer, ByVal v As Integer)
+Sub ibtmo(ByVal ud As Integer, ByVal V As Integer)
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    Call ibtmo32(ud, v)
+    Call ibtmo32(ud, V)
 
     Call copy_ibvars
 End Sub
@@ -805,14 +805,14 @@ Function ilbna(ByVal ud As Integer, ByVal udname As String) As Integer
     Call copy_ibvars
 End Function
 
-Function ilcac(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilcac(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilcac = ConvertLongToInt(ibcac32(ud, v))
+    ilcac = ConvertLongToInt(ibcac32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -856,14 +856,14 @@ Function ilcmda(ByVal ud As Integer, ByVal buf As String, ByVal cnt As Long) As 
     Call copy_ibvars
 End Function
 
-Function ilconfig(ByVal bdid As Integer, ByVal opt As Integer, ByVal v As Integer) As Integer
+Function ilconfig(ByVal bdid As Integer, ByVal opt As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilconfig = ConvertLongToInt(ibconfig32(bdid, opt, v))
+    ilconfig = ConvertLongToInt(ibconfig32(bdid, opt, V))
 
     Call copy_ibvars
 End Function
@@ -881,38 +881,38 @@ Function ildev(ByVal bdid As Integer, ByVal pad As Integer, ByVal sad As Integer
 End Function
 
 
-Function ildma(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ildma(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ildma = ConvertLongToInt(ibdma32(ud, v))
+    ildma = ConvertLongToInt(ibdma32(ud, V))
 
     Call copy_ibvars
 End Function
 
-Function ileos(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ileos(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ileos = ConvertLongToInt(ibeos32(ud, v))
+    ileos = ConvertLongToInt(ibeos32(ud, V))
 
     Call copy_ibvars
 End Function
 
-Function ileot(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ileot(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ileot = ConvertLongToInt(ibeot32(ud, v))
+    ileot = ConvertLongToInt(ibeot32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -930,26 +930,26 @@ Function ilfind(ByVal udname As String) As Integer
     Call copy_ibvars
 End Function
 
-Function ilgts(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilgts(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilgts = ConvertLongToInt(ibgts32(ud, v))
+    ilgts = ConvertLongToInt(ibgts32(ud, V))
 
     Call copy_ibvars
 End Function
 
-Function ilist(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilist(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilist = ConvertLongToInt(ibist32(ud, v))
+    ilist = ConvertLongToInt(ibist32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -999,26 +999,26 @@ Function illoc(ByVal ud As Integer) As Integer
     Call copy_ibvars
 End Function
 
-Function ilonl(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilonl(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilonl = ConvertLongToInt(ibonl32(ud, v))
+    ilonl = ConvertLongToInt(ibonl32(ud, V))
 
     Call copy_ibvars
 End Function
 
-Function ilpad(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilpad(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilpad = ConvertLongToInt(ibpad32(ud, v))
+    ilpad = ConvertLongToInt(ibpad32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -1037,14 +1037,14 @@ End Function
 
 
 
-Function ilppc(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilppc(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilppc = ConvertLongToInt(ibppc32(ud, v))
+    ilppc = ConvertLongToInt(ibppc32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -1133,14 +1133,14 @@ Function ilrpp(ByVal ud As Integer, ppr As Integer) As Integer
     Call copy_ibvars
 End Function
 
-Function ilrsc(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilrsc(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 '  Call the 32-bit DLL.
-    ilrsc = ConvertLongToInt(ibrsc32(ud, v))
+    ilrsc = ConvertLongToInt(ibrsc32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -1161,26 +1161,26 @@ Function ilrsp(ByVal ud As Integer, spr As Integer) As Integer
     Call copy_ibvars
 End Function
 
-Function ilrsv(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilrsv(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 ' Call the 32-bit DLL.
-    ilrsv = ConvertLongToInt(ibrsv32(ud, v))
+    ilrsv = ConvertLongToInt(ibrsv32(ud, V))
 
     Call copy_ibvars
 End Function
 
-Function ilsad(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilsad(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 '  Call the 32-bit DLL.
-    ilsad = ConvertLongToInt(ibsad32(ud, v))
+    ilsad = ConvertLongToInt(ibsad32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -1197,14 +1197,14 @@ Function ilsic(ByVal ud As Integer) As Integer
     Call copy_ibvars
 End Function
 
-Function ilsre(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function ilsre(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 '  Call the 32-bit DLL.
-    ilsre = ConvertLongToInt(ibsre32(ud, v))
+    ilsre = ConvertLongToInt(ibsre32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -1221,14 +1221,14 @@ Function ilstop(ByVal ud As Integer) As Integer
     Call copy_ibvars
 End Function
 
-Function iltmo(ByVal ud As Integer, ByVal v As Integer) As Integer
+Function iltmo(ByVal ud As Integer, ByVal V As Integer) As Integer
 ' Check to see if GPIB Global variables are registered
     If (GPIBglobalsRegistered = 0) Then
       Call RegisterGPIBGlobals
     End If
 
 '  Call the 32-bit DLL.
-    iltmo = ConvertLongToInt(ibtmo32(ud, v))
+    iltmo = ConvertLongToInt(ibtmo32(ud, V))
 
     Call copy_ibvars
 End Function
@@ -1338,7 +1338,7 @@ Sub PassControl(ByVal ud As Integer, ByVal addr As Integer)
     Call copy_ibvars
 End Sub
 
-Sub Ppoll(ByVal ud As Integer, result As Integer)
+Sub ppoll(ByVal ud As Integer, result As Integer)
     Dim tmpresult As Long
 
 ' Check to see if GPIB Global variables are registered
@@ -1410,7 +1410,7 @@ Sub ReadStatusByte(ByVal ud As Integer, ByVal addr As Integer, result As Integer
     Call copy_ibvars
 End Sub
 
-Sub Receive(ByVal ud As Integer, ByVal addr As Integer, buf As String, ByVal term As Integer)
+Sub receive(ByVal ud As Integer, ByVal addr As Integer, buf As String, ByVal term As Integer)
     Dim cnt As Long
 
 ' Check to see if GPIB Global variables are registered
@@ -1450,7 +1450,7 @@ Sub ResetSys(ByVal ud As Integer, addrs() As Integer)
     Call copy_ibvars
 End Sub
 
-Sub Send(ByVal ud As Integer, ByVal addr As Integer, ByVal buf As String, ByVal term As Integer)
+Sub send(ByVal ud As Integer, ByVal addr As Integer, ByVal buf As String, ByVal term As Integer)
     Dim cnt As Long
 
 ' Check to see if GPIB Global variables are registered

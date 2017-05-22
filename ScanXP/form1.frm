@@ -2,16 +2,33 @@ VERSION 5.00
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Direct GPIB Control"
-   ClientHeight    =   3915
+   ClientHeight    =   8835
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   5970
+   ClientWidth     =   8250
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   3915
-   ScaleWidth      =   5970
+   ScaleHeight     =   8835
+   ScaleWidth      =   8250
+   Begin VB.CommandButton Command7 
+      Caption         =   "Command7"
+      Height          =   1575
+      Left            =   4320
+      TabIndex        =   14
+      Top             =   4560
+      Width           =   2175
+   End
+   Begin VB.ListBox preamlist 
+      Height          =   2205
+      ItemData        =   "form1.frx":0000
+      Left            =   360
+      List            =   "form1.frx":001F
+      TabIndex        =   13
+      Top             =   4320
+      Width           =   3495
+   End
    Begin VB.CommandButton Command6 
       Caption         =   "Command6"
       Height          =   495
@@ -119,14 +136,15 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
+Dim da() As Byte
+Dim datbl(0 To 6000) As Integer
 Private Sub Command1_Click()
     
     Dim addr As Integer
     
     addr = Val(Text2.Text)
 
-    GPIB.Send Text1.Text, addr
+    GPIB.send Text1.Text, addr
     
     Text3.Text = ""
     
@@ -162,6 +180,25 @@ s = ""
 'Text3.Text = DVM34401A_GetSample
 
 
+End Sub
+
+Private Sub Command7_Click()
+    For i = 0 To preamlist.ListCount - 1
+        a = GPIB.send(preamlist.List(i), 1, True)
+    Next i
+        
+        a = GPIB.send("Curve?", 1, True)
+        dac = GPIB.Recv(1, 10000, True)
+        
+        da = StrConv(dac, vbFromUnicode)
+        'datbl = CInt(dac)
+        
+    For i = 0 To 5000 - 1
+        datbl(i) = da(i * 2) & da((i * 2) + 1)
+   Next i
+        
+        
+        
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)

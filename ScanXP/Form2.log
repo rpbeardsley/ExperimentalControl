@@ -1,3 +1,27 @@
 Line 18: Class MG17LoggerLib.MG17Logger of control MG17Logger1 was not a loaded control class.
 Line 30: Class MG17SystemLib.MG17System of control MG17System1 was not a loaded control class.
 Line 42: Class MG17MotorLib.MG17Motor of control MG17Motor1 was not a loaded control class.
+Line 25: The property name _Version in MG17Logger1 is invalid.
+Line 26: The property name _ExtentX in MG17Logger1 is invalid.
+Line 27: The property name _ExtentY in MG17Logger1 is invalid.
+Line 28: The property name _StockProps in MG17Logger1 is invalid.
+Line 37: The property name _Version in MG17System1 is invalid.
+Line 38: The property name _ExtentX in MG17System1 is invalid.
+Line 39: The property name _ExtentY in MG17System1 is invalid.
+Line 40: The property name _StockProps in MG17System1 is invalid.
+Line 49: The property name _Version in MG17Motor1 is invalid.
+Line 50: The property name _ExtentX in MG17Motor1 is invalid.
+Line 51: The property name _ExtentY in MG17Motor1 is invalid.
+Line 52: The property name _StockProps in MG17Motor1 is invalid.
+Line 25: The property name _Version in MG17Logger1 is invalid.
+Line 26: The property name _ExtentX in MG17Logger1 is invalid.
+Line 27: The property name _ExtentY in MG17Logger1 is invalid.
+Line 28: The property name _StockProps in MG17Logger1 is invalid.
+Line 37: The property name _Version in MG17System1 is invalid.
+Line 38: The property name _ExtentX in MG17System1 is invalid.
+Line 39: The property name _ExtentY in MG17System1 is invalid.
+Line 40: The property name _StockProps in MG17System1 is invalid.
+Line 49: The property name _Version in MG17Motor1 is invalid.
+Line 50: The property name _ExtentX in MG17Motor1 is invalid.
+Line 51: The property name _ExtentY in MG17Motor1 is invalid.
+Line 52: The property name _StockProps in MG17Motor1 is invalid.

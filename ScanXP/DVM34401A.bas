@@ -9,7 +9,7 @@ Public Function DVM34401A_GetSample(addr As Integer) As String
     GPIB.send "SAMP:COUN MIN", addr
     GPIB.send "INIT", addr
     
-    Pause (0.1)
+    'Pause (0.1)
 
     GPIB.send "FETC?", addr
 

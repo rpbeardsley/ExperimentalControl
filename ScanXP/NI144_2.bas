@@ -1,6 +1,10 @@
 Attribute VB_Name = "NI144_2"
 'Main High-Level calls
 
+Public Type abuf
+    dat(0 To 5000) As Integer
+End Type
+
 Private BOARDID As Integer
 Dim devlist() As Integer
 Dim devaddrlist() As Integer
@@ -33,6 +37,27 @@ Public Function NI144_GPIB_Send(dat As String, addr As Integer, success As Boole
     End If
         
     success = DidItWork
+
+End Function
+
+Public Function NI144_Recv_Integer_Array(addr As Integer, count As Long, ByRef outputarray, Optional success As Boolean)
+
+    Dim Dev As Integer
+    Dim DidItWork As Boolean
+    Dim buff As Integer
+    
+    Dim arr() As Integer
+    
+    ReDim arr(0 To count - 1)
+    
+    Dev = GetDev(addr, DidItWork)
+    
+    For b = 0 To count - 1
+        a = VBIB32.ibrd32(Dev, buff, 2) 'get the signal data from the chosen channel
+        arr(b) = buff
+    Next
+
+    outputarray = arr
 
 End Function
 
@@ -96,7 +121,8 @@ Public Function NI144_GPIB_Serial_Poll_Single(addr As Integer) As Integer
 
     If success = True Then
         Call ibrsp(Dev, result)
-        NI144_SERIAL_POLL_SINGLE = result
+        'NI144_SERIAL_POLL_SINGLE = result
+        NI144_GPIB_Serial_Poll_Single = result
     End If
 
 End Function

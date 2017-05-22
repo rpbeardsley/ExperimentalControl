@@ -7,6 +7,7 @@ End Function
 
 Public Function SRS830_GetPhase(addr As Integer) As Single
 
+
     Dim inbuf As String
     Dim strng As String
     
@@ -375,8 +376,8 @@ Public Function SRS830_SetSensitivity(addr As Integer, n As Integer)
 
 End Function
 
-Public Function SRS830_GetSensitivity(addr As Integer, indx As Integer, Optional VoltageOrCurrent As Integer = 0) As Double
-
+Public Function SRS830_GetSensitivity(addr As Integer, Optional VoltageOrCurrent As Integer = 0) As Double
+'Public Function SRS830_GetSensitivity(addr As Integer, indx As Integer, Optional VoltageOrCurrent As Integer = 0) As Double
     'Get sensitivity.
     'If VoltageOrCurrent = 0 then sensitivity is returned in
     'voltage units, otherwise it is in current units.
@@ -387,7 +388,7 @@ Public Function SRS830_GetSensitivity(addr As Integer, indx As Integer, Optional
     Dim a As Integer
     Dim b As Boolean
     
-    'Request time constant
+    'Request sensitivity
     strng = "SENS?"
     GPIB.send strng, addr
     
@@ -589,7 +590,64 @@ fin:
 ext:
 
 End Function
+Public Function SR830_getDataBuffer(addr As Integer, ByRef succes As Boolean) As Double
 
+Dim j As String
+Dim inbuf As String
+Dim tdata() As Integer
+Dim sdata() As Integer
+
+addr = 6
+
+Open "C:\Documents and Settings\phononshared\Desktop\maryam\test.txt" For Append As #1
+
+GPIB.send "SPTS?", addr     'queries how many points in buffer?
+r = GPIB.Recv(addr, 256)    'set r to number of points
+GPIB.send "TRCA?1,0," + Format(r), addr   'sends commands for buffer (channel 1, 0(from start), total in buffer)
+j = GPIB.Recv(addr, 256) 'receives the whole buffer
+b = InStr(1, j, ",") 'number of char until the comma
+
+ReDim tdata(0 To r - 1)
+ReDim sdata(0 To r - 1)
+
+For d = 0 To r - 1
+
+    inbuf = Left(j, b - 1)  'take the front point
+    e = Right(j, Len(j))    'cut out the front point
+
+'Scan through the 20 char buffer (one point) and
+    'separate mantissa from exponent
+    m1 = -1
+    m2 = -1
+    success = True
+    For a = 1 To 20
+        If Mid(inbuf, a, 1) = "e" Then m1 = a
+        If Mid(inbuf, a, 1) = vbLf Then m2 = a: GoTo fin
+        If a = Len(inbuf) Then m2 = a + 1: GoTo fin
+    Next a
+fin:
+    If (m1 > -1 And m2 > -1) Then
+        mantissa = Val(Mid(inbuf, 1, (m1 - 1)))
+        exponent = Val(Mid(inbuf, (m1 + 1), (m2 - (m1 + 1))))
+        valu = mantissa * (10 ^ exponent)
+    ElseIf (m1 = -1 And m2 > -1) Then
+        valu = Val(Mid(inbuf, 1, (m2 - 1)))
+    ElseIf (m2 = -1) Then
+        success = False
+    End If
+    j = e
+    tdata(d) = valu
+    sdata(d) = d
+    'Print #1, valu
+Next d
+'makedata tdata(), sdata()
+'GPIB.send "REST", 6
+Close #1
+
+End Function
+Public Function makedata(tdata As Integer, sdata As Integer)
+
+End Function
 Public Function SRS830_Trigger(addr As Integer)
     GPIB.send "TRIG", addr
 End Function
@@ -618,9 +676,9 @@ Public Function SRS830_ReadXY(addr As Integer, ByRef readtime, ByRef success As 
     If DidItWork = False Then success = False: GoTo ext
 
     'Split Response at comma
-    s = split_delimited_string(inbuf, ",", out)
-    in1 = out(0)
-    in2 = out(1)
+    s = split_delimited_string(inbuf, ",", Out)
+    in1 = Out(0)
+    in2 = Out(1)
     
     If s = True Then
     
@@ -714,6 +772,8 @@ Private Function GetFullScale(V As Integer, voltage As Boolean)
     If V = 25 Then f = 0.5
     If V = 26 Then f = 1
     
-    If voltage = False Then V = V * 0.000001
+    If voltage = False Then f = f * 0.000001
+    
+    GetFullScale = f
     
 End Function

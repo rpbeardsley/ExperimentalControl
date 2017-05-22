@@ -2,20 +2,44 @@ VERSION 5.00
 Begin VB.Form PIDTempControl 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "PID Temperature Control"
-   ClientHeight    =   7410
+   ClientHeight    =   8250
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   7365
+   ClientWidth     =   7410
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   7410
-   ScaleWidth      =   7365
+   ScaleHeight     =   8250
+   ScaleWidth      =   7410
+   Begin VB.CheckBox tempalC 
+      Caption         =   "Temperature alarm"
+      Height          =   615
+      Left            =   4800
+      TabIndex        =   40
+      Top             =   7200
+      Width           =   1935
+   End
+   Begin VB.TextBox allowT 
+      Height          =   285
+      Left            =   2400
+      TabIndex        =   37
+      Text            =   "7.5"
+      Top             =   7560
+      Width           =   2055
+   End
+   Begin VB.TextBox alhighT 
+      Height          =   285
+      Left            =   2400
+      TabIndex        =   36
+      Text            =   "8.2"
+      Top             =   7200
+      Width           =   2055
+   End
    Begin VB.ComboBox Combo2 
       Height          =   315
       Left            =   3840
-      TabIndex        =   38
+      TabIndex        =   35
       Text            =   "Combo2"
       Top             =   1320
       Width           =   1695
@@ -37,26 +61,11 @@ Begin VB.Form PIDTempControl
       Top             =   960
       Width           =   1695
    End
-   Begin VB.TextBox Text18 
-      Height          =   285
-      Left            =   1920
-      TabIndex        =   36
-      Top             =   6360
-      Width           =   1455
-   End
-   Begin VB.ComboBox Combolkin 
-      Height          =   315
-      Left            =   3480
-      TabIndex        =   35
-      Text            =   "Combolkin"
-      Top             =   6360
-      Width           =   1695
-   End
    Begin VB.Frame Frame2 
       Caption         =   "Heater Power Parameters"
       Height          =   2415
       Left            =   120
-      TabIndex        =   31
+      TabIndex        =   30
       Top             =   2880
       Width           =   3615
       Begin VB.TextBox txtMaxV 
@@ -87,7 +96,7 @@ Begin VB.Form PIDTempControl
          Caption         =   "Maximum Output Voltage / V"
          Height          =   495
          Left            =   240
-         TabIndex        =   34
+         TabIndex        =   33
          Top             =   360
          Width           =   1335
       End
@@ -95,7 +104,7 @@ Begin VB.Form PIDTempControl
          Caption         =   "Maximum Sweep Rate / K per sec"
          Height          =   495
          Left            =   240
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   1080
          Width           =   1335
       End
@@ -103,7 +112,7 @@ Begin VB.Form PIDTempControl
          Caption         =   "Final Target Temperature / K"
          Height          =   375
          Left            =   240
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   1680
          Width           =   1695
       End
@@ -247,21 +256,29 @@ Begin VB.Form PIDTempControl
       Top             =   6600
       Width           =   1695
    End
+   Begin VB.Label Label18 
+      Caption         =   "Alarm Temp Low / K"
+      Height          =   255
+      Left            =   480
+      TabIndex        =   39
+      Top             =   7560
+      Width           =   1815
+   End
+   Begin VB.Label Label17 
+      Caption         =   "Alarm Temp High / K"
+      Height          =   255
+      Left            =   480
+      TabIndex        =   38
+      Top             =   7200
+      Width           =   1815
+   End
    Begin VB.Label Label8 
       Caption         =   "GPIB  Address of Heater PSU:"
       Height          =   255
       Left            =   240
-      TabIndex        =   37
+      TabIndex        =   34
       Top             =   960
       Width           =   3255
-   End
-   Begin VB.Label Label17 
-      Caption         =   "Lock-in reading"
-      Height          =   375
-      Left            =   240
-      TabIndex        =   30
-      Top             =   6360
-      Width           =   1335
    End
    Begin VB.Label Label16 
       Caption         =   "Lock-in Sine Out Voltage:"
@@ -309,17 +326,17 @@ Begin VB.Form PIDTempControl
    End
    Begin VB.Label lblCurrTargetT 
       Height          =   255
-      Left            =   2160
+      Left            =   2520
       TabIndex        =   25
-      Top             =   5880
+      Top             =   6000
       Width           =   1215
    End
    Begin VB.Label Label12 
       Caption         =   "Current Target / K"
       Height          =   255
-      Left            =   240
+      Left            =   600
       TabIndex        =   24
-      Top             =   5880
+      Top             =   6000
       Width           =   1575
    End
    Begin VB.Label Label7 
@@ -331,18 +348,27 @@ Begin VB.Form PIDTempControl
       Width           =   1335
    End
    Begin VB.Label lblCurrTemp 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   18
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   2160
+      Left            =   2520
       TabIndex        =   20
-      Top             =   6840
-      Width           =   1215
+      Top             =   6600
+      Width           =   1695
    End
    Begin VB.Label Label1 
       Caption         =   "Current Temperature / K"
       Height          =   255
-      Left            =   240
+      Left            =   600
       TabIndex        =   14
-      Top             =   6840
+      Top             =   6720
       Width           =   1815
    End
 End
@@ -351,6 +377,20 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Declare Function PlaySound Lib "winmm.dll" Alias "PlaySoundA" (ByVal lpszName As String, ByVal hModule As Long, ByVal dwFlags As Long) As Long
+Private alarmplaytimes As Integer
+Private alarmplayno As Integer
+
+
+
+
+Private Sub alhighT_Change()
+altemphigh = CDbl(alhighT.Text)
+End Sub
+
+Private Sub allowT_Change()
+altemplow = CDbl(allowT.Text)
+End Sub
 
 Private Sub Command1_Click()
     
@@ -381,6 +421,9 @@ Private Sub Command1_Click()
 End Sub
 
 Private Sub Form_Load()
+
+    alarmplayno = 3
+    alarmplaytimes = 0
     
     Text1.Text = TEMP_CONTROL_LOCKIN
     Text2.Text = FIXED_RESISTANCE_IN_CERNOX_CIRCUIT
@@ -399,11 +442,11 @@ Private Sub Form_Load()
         Combo2.ListIndex = 1
     End If
     
-    Combolkin.Clear
-    Combolkin.AddItem ("Micro-volts")
-    Combolkin.AddItem ("Milli-volts")
-    Combolkin.AddItem ("Volts")
-    Combolkin.ListIndex = 0
+    'Combolkin.Clear
+    'Combolkin.AddItem ("Micro-volts")
+    'Combolkin.AddItem ("Milli-volts")
+    'Combolkin.AddItem ("Volts")
+    'Combolkin.ListIndex = 0
     
     If TEMP_CONTROL_LOCKIN_MODEL = 510 Then
         Combo1.ListIndex = 1
@@ -498,6 +541,29 @@ Private Sub cmdRegulateTemp_Click()
     
 End Sub
 
+Private Sub lblCurrTemp_Change()
+        currtemp = CDbl(Val(lblCurrTemp.Caption))
+    If tempalenabled Then
+        If currtemp > alhigh Then
+            If alarmplaytimes < alarmplayno Then
+                a = PlaySound("ALARM.wav", 0, 0)
+                alarmplaytimes = alarmplaytimes + 1
+            End If
+        ElseIf currtemp < allow Then
+            If alarmplaytimes < alarmplayno Then
+                a = PlaySound("ALARM.wav", 0, 0)
+                alarmplaytimes = alarmplaytimes + 1
+            End If
+        Else
+            alarmplaytimes = 0
+        End If
+    End If
+End Sub
+
+Private Sub tempalC_Click()
+tempalenabled = tempalC.value
+End Sub
+
 Private Sub Timer1_Timer()
 
     Static OldT, LastTime As Single
@@ -534,10 +600,10 @@ Private Sub Timer1_Timer()
         reading = -1
     End If
     
-    c = (0.001) ^ (2 - CInt(Combolkin.ListIndex))
+    'c = (0.001) ^ (2 - CInt(Combolkin.ListIndex))
     
     SetT = Val(txtTargTemp.Text)
-    NewT = Globals.GetTemperature(CDec(Text3.Text), c * CDec(Val(Text18.Text)), Thermometer)
+    NewT = Globals.AutoGetTemperature(TEMP_CONTROL_LOCKIN, TEMP_CONTROL_LOCKIN_MODEL, Thermometer, sineout, reading)
     
     If ChkScaleProp = True Then
         Prop = gProp * NewT / 300   'Scale proportional term with current temperature
@@ -596,10 +662,10 @@ Private Sub Timer2_Timer()
         Text3.Text = Format(sineout, "0.000")
     End If
 
-    If reading <> -1 Then
-        Text18.Text = Format(reading * 1000000, "0.00")
-        Combolkin.ListIndex = 0
-    End If
+    'If reading <> -1 Then
+        'Text18.Text = Format(reading * 1000000, "0.00")
+        'Combolkin.ListIndex = 0
+    'End If
 
 End Sub
 

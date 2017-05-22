@@ -7,13 +7,13 @@ Public Sub Init()
   StepperControlForm.Hide
 
   ' Start system.
-  StepperControlForm.MG17System1.StartCtrl
+  'StepperControlForm.MG17System1.StartCtrl
 
   ' Set serial number
-  StepperControlForm.MG17Motor1.HWSerialNum = THORLABS_STEPPER_CONTROLLER_SERIALNUM
+  'StepperControlForm.MG17Motor1.HWSerialNum = THORLABS_STEPPER_CONTROLLER_SERIALNUM
   
   ' Start motor control
-  StepperControlForm.MG17Motor1.StartCtrl
+  'StepperControlForm.MG17Motor1.StartCtrl
   
   'Stop the event info box from ever popping up with stupid USB errors
   'and messing up your experiment
@@ -30,25 +30,25 @@ End Sub
 
 Public Sub UpdateNanoStepPositionCounter()
 
-    NanoStep.CurrentPosition = StepperControlForm.MG17Motor1.GetPosition_Position(0)
+    'NanoStep.CurrentPosition = StepperControlForm.MG17Motor1.GetPosition_Position(0)
 
 End Sub
 
 Public Sub GoToPosition(pos As Single)
 
-    success = StepperControlForm.MG17Motor1.MoveAbsoluteEx(0, pos, 1, True)
+    'success = StepperControlForm.MG17Motor1.MoveAbsoluteEx(0, pos, 1, True)
 
 End Sub
 
 Public Sub MoveTrack(dist As Single)
 
-    success = StepperControlForm.MG17Motor1.MoveRelativeEx(0, dist, 1, True)
+    'success = StepperControlForm.MG17Motor1.MoveRelativeEx(0, dist, 1, True)
 
 End Sub
 
 Public Sub MoveTrackWithCallback(dist As Single)
 
-    success = StepperControlForm.MG17Motor1.MoveRelativeEx(0, dist, 1, False)
+    'success = StepperControlForm.MG17Motor1.MoveRelativeEx(0, dist, 1, False)
     ThorLabsStepper_Moving = True
     While ThorLabsStepper_Moving
     
@@ -62,13 +62,13 @@ End Sub
 
 Public Sub HomeTrack()
 
-    StepperControlForm.MG17Motor1.MoveHome 0, True
+    'StepperControlForm.MG17Motor1.MoveHome 0, True
 
 End Sub
 
 Public Sub UpdateNanoStepSpeed()
 
-    NanoStep.CurrentSpeed = StepperControlForm.MG17Motor1.GetVelParams_MaxVel(0)
+    'NanoStep.CurrentSpeed = StepperControlForm.MG17Motor1.GetVelParams_MaxVel(0)
 
 End Sub
 
@@ -82,8 +82,8 @@ Dim plDirSense As Long
 Dim stepsPerRev As Long
 Dim gearBoxRatio As Long
 
-success = StepperControlForm.MG17Motor1.GetStageAxisInfo(0, minpos, maxpos, screwPitchUnits, screwPitch, plDirSense)
-success = StepperControlForm.MG17Motor1.GetMotorParams(0, stepsPerRev, gearBoxRatio)
+'success = StepperControlForm.MG17Motor1.GetStageAxisInfo(0, minpos, maxpos, screwPitchUnits, screwPitch, plDirSense)
+'success = StepperControlForm.MG17Motor1.GetMotorParams(0, stepsPerRev, gearBoxRatio)
 GetSmallestNanoStep = screwPitch / (stepsPerRev * gearBoxRatio)
 
 End Function

@@ -21,10 +21,20 @@ Public BOXCAR_ADDR As Integer
 Public MIRROR_DISTANCE_TO_VOLTAGE_RATIO As Single
 Public ECLIPSE_PROG_PATH As String
 Public IEEECARD As Integer
-Public SR510_GPIB_OR_RS232 As String
+Public Newport_Stepper_Port As Integer
+Public ave() As Double
 
+Public SR510_GPIB_OR_RS232 As String
+Public PSU_ADDR As Integer
 Private Declare Function GetOpenFileName Lib "comdlg32.dll" Alias "GetOpenFileNameA" (pOpenfilename As OPENFILENAME) As Long
 Private Declare Function GetSaveFileName Lib "comdlg32.dll" Alias "GetSaveFileNameA" (pSavefilename As OPENFILENAME) As Long
+
+'Alarms for temperature
+Public tempalenabled As Boolean
+'''''
+Declare Function VarPtrArray Lib "msvbvm60.dll" Alias "VarPtr" (Var() As Any) As Long
+
+
 
 
 Private Type OPENFILENAME
@@ -67,7 +77,7 @@ Sub Main()
     BIASSWITCH_PRIMARY_ADDR = 10
     BIASSWITCH_SECONDARY_ADDR = 210
     DIGITISER_MODEL = 9825
-    DIGITISER_ADDR = "310"
+    DIGITISER_ADDR = "350"
     FIXED_RESISTANCE_IN_CERNOX_CIRCUIT = 10000000
     MIRROR_LOCKIN_ADDR = 6
     MIRROR_DISTANCE_TO_VOLTAGE_RATIO = 0.45 * 1.734
@@ -75,7 +85,9 @@ Sub Main()
     DVM2_ADDR = 22
     DVS_ADDR = 13
     BOXCAR_ADDR = 16
-    SR510_GPIB_OR_RS232 = "RS232"
+    SR510_GPIB_OR_RS232 = "GPIB"
+    PSU_ADDR = 11
+    Newport_Stepper_Port = 3
     
     'Set what type of IEEE488 card is in the machine
     '1 - National Instruments NI-488.2 GPIB-PCI card
@@ -83,7 +95,7 @@ Sub Main()
     '3 - IOTECH Personal488 (make sure in the BIOS you have the IRQ and DMA set to legacy ISA)
     IEEECARD = 1
     
-    NANOSTEPPER_TYPE = 2 '1 = Melles Griot, 2 = Thorlabs
+    NANOSTEPPER_TYPE = 3 '1 = Melles Griot, 2 = Thorlabs, 3=Newport
     THORLABS_STEPPER_CONTROLLER_SERIALNUM = 40809322
     
     ECLIPSE_PROG_PATH = App.Path
@@ -94,9 +106,9 @@ Sub Main()
 
     NanoStep.Init ("") 'Default init
     GPIB.Init
-    Digitiser.Init
+    'Digitiser.Init
     'Mirrors.Init
-    DVS.DVS_Init (DVS_ADDR)
+    'DVS.DVS_Init (DVS_ADDR)
     'Boxcar.InitBoxcar (BOXCAR_ADDR)
     
     RS232.Hide
@@ -172,6 +184,7 @@ Public Function GetTemperature(sineout_voltage, lockin_reading, Thermometer_Type
     
     If Thermometer_Type = 1 Then
     
+        If sineout_voltage = 0 Then sineout_voltage = 1
         SensorCurrent = sineout_voltage / FIXED_RESISTANCE_IN_CERNOX_CIRCUIT
         r = lockin_reading / SensorCurrent
     
@@ -205,6 +218,7 @@ Public Function GetTemperature(sineout_voltage, lockin_reading, Thermometer_Type
         
         End If
     
+        If r <= 0 Then r = 900
         r = Log(Log(r))
         X = a * r + b
     
@@ -241,11 +255,13 @@ Public Function AutoGetTemperature(lockin_address As Integer, lockin_model As In
         If TEMP_CONTROL_LOCKIN_MODEL = 830 Then
             LockinMagnitude = CDec(SRS830.SRS830_ReadChannel(lockin_address, 3, rt, success))
             refvoltage = CDec(SRS830.SRS830_ReadChannel(lockin_address, 5, rt, success))
+            If refvoltage = 0 Then refvoltage = 1
             SensorCurrent = refvoltage / FIXED_RESISTANCE_IN_CERNOX_CIRCUIT
             r = LockinMagnitude / SensorCurrent
         Else
             LockinMagnitude = CDec(SR510.SR510_ReadX(lockin_address, rt, success))
             refvoltage = sineout_voltage
+            If refvoltage = 0 Then refvoltage = 1
             SensorCurrent = refvoltage / FIXED_RESISTANCE_IN_CERNOX_CIRCUIT
             r = LockinMagnitude / SensorCurrent
         End If
@@ -288,6 +304,7 @@ Public Function AutoGetTemperature(lockin_address As Integer, lockin_model As In
         
         End If
     
+        If r <= 0 Then r = 900
         r = Log(Log(r))
         X = a * r + b
     

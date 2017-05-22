@@ -1,7 +1,4 @@
 VERSION 5.00
-Object = "{2A833923-9AA7-4C45-90AC-DA4F19DC24D1}#1.0#0"; "MG17Motor.ocx"
-Object = "{9460A175-8618-4753-B337-61D9771C4C14}#1.0#0"; "MG17System.ocx"
-Object = "{2A38BE50-27E7-42F0-8663-CBCB1F25E13D}#1.0#0"; "MG17LO~1.OCX"
 Begin VB.Form StepperControlForm 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "StepperControl"
@@ -15,41 +12,35 @@ Begin VB.Form StepperControlForm
    MinButton       =   0   'False
    ScaleHeight     =   4635
    ScaleWidth      =   6150
-   Begin MG17LoggerLib.MG17Logger MG17Logger1 
+   Begin VB.PictureBox MG17Logger1 
       Height          =   495
       Left            =   5520
+      ScaleHeight     =   435
+      ScaleWidth      =   195
       TabIndex        =   19
       Top             =   3600
       Visible         =   0   'False
       Width           =   255
-      _Version        =   65536
-      _ExtentX        =   450
-      _ExtentY        =   873
-      _StockProps     =   205
    End
-   Begin MG17SystemLib.MG17System MG17System1 
+   Begin VB.PictureBox MG17System1 
       Height          =   375
       Left            =   4560
+      ScaleHeight     =   315
+      ScaleWidth      =   555
       TabIndex        =   18
       Top             =   3480
       Visible         =   0   'False
       Width           =   615
-      _Version        =   65536
-      _ExtentX        =   1085
-      _ExtentY        =   661
-      _StockProps     =   0
    End
-   Begin MG17MotorLib.MG17Motor MG17Motor1 
+   Begin VB.PictureBox MG17Motor1 
       Height          =   375
       Left            =   4560
+      ScaleHeight     =   315
+      ScaleWidth      =   555
       TabIndex        =   17
       Top             =   3960
       Visible         =   0   'False
       Width           =   615
-      _Version        =   65536
-      _ExtentX        =   1085
-      _ExtentY        =   661
-      _StockProps     =   0
    End
    Begin VB.TextBox Text3 
       Height          =   375
@@ -91,7 +82,7 @@ Begin VB.Form StepperControlForm
    End
    Begin VB.TextBox Text2 
       Height          =   375
-      Left            =   1440
+      Left            =   1320
       TabIndex        =   3
       Text            =   "NS_1000"
       Top             =   240
@@ -250,11 +241,11 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
 End Sub
 
 Private Sub MG17Motor1_HomeComplete(ByVal lChanID As Long)
-    NanoStep.CurrentPosition = StepperControlForm.MG17Motor1.GetPosition_Position(0)
+    'NanoStep.CurrentPosition = StepperControlForm.MG17Motor1.GetPosition_Position(0)
 End Sub
 
 Private Sub MG17Motor1_MoveComplete(ByVal lChanID As Long)
     ThorlabsNanoStep.ThorLabsStepper_Moving = False
-    NanoStep.CurrentPosition = StepperControlForm.MG17Motor1.GetPosition_Position(0)
+    'NanoStep.CurrentPosition = StepperControlForm.MG17Motor1.GetPosition_Position(0)
 End Sub
 

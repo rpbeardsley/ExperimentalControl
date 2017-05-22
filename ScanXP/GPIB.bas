@@ -17,6 +17,26 @@ Public Function send(dat As String, addr As Integer, Optional success As Boolean
 
 End Function
 
+Public Function RecvIntegerArray(addr As Integer, count As Long, ByRef outputarray, Optional success As Boolean = False)
+
+    Dim DidItWork As Boolean
+    Dim l As Integer
+    Dim status As Integer
+    Dim buff As String
+
+    If IEEECARD = 1 Then
+        Call NI144_Recv_Integer_Array(addr, count, dat)
+        success = DidItWork
+    ElseIf IEEECARD = 2 Then
+
+    ElseIf IEEECARD = 3 Then
+        
+    End If
+
+    outputarray = dat
+
+End Function
+
 Public Function Recv(addr As Integer, nbytes As Integer, Optional success As Boolean = False) As String
 
     Dim DidItWork As Boolean

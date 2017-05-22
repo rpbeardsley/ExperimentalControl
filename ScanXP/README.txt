@@ -1,7 +1,5 @@
 Things you have to install
 --------------------------
-Eclipse Software - Install CD
-
 Melles Griot Software - Install CAN Card driver from CD1 (file named setup), install card, Put in dongle, Switch on - Windows will auto-detect and install 
 In device manager go to National Instruments PCI-CAN properties
 In Settings tab put Name: CAN0
@@ -13,6 +11,22 @@ Reboot
 Run CDROM/Melhost V5.4.x/Setup.exe - follow instructions
 Reboot
 Run Modular Electronics Host Configuration Utility to check communications
+
+
+Eclipse Software
+----------------
+Put card into computer.
+When the new hardware wizard starts up point it at the 'Eclipse Installation Files' directory.
+It should install itself.
+Now go into the 'Eclipse Installation Files' Directory and run setup.exe
+Install the Eclipse Software - this will install the Istrument Control Server (ICS) which you need.
+Now go into the directory which the eclipse software was installed to.
+Run the ICS.EXE file and then exit it. This will register the ICS with the operating system.
+If you don't do that then every time you run the eclipse software you'll get a 'Can't find server' error.
+The version of Eclipse.exe in the Scan XP directory is a special version adapted to work with scan. Don't overwrite it.
+The source code for the adapted version is also included in the scan XP directory under 'Eclipse Program Adapted for Scan - Source' directory.
+Go into the 'Globals' module and make sure the 'ECLIPSE_PROG_PATH' variable points to the Eclipse.exe in the scan XP directory. It is set up to find this automatically. 'App.Path' is the scan XP directory (unless Vb is doing something strange which occasionally happens - try recompiling)
+You are now good to go.
 
 
 GPIB card software

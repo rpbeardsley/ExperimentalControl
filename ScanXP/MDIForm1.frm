@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "comctl32.ocx"
 Begin VB.MDIForm MDIForm1 
    BackColor       =   &H8000000C&
    Caption         =   "Scan XP"
@@ -33,14 +33,26 @@ Begin VB.MDIForm MDIForm1
       Begin VB.Menu menu_view_boltrans 
          Caption         =   "Bolometer Transition"
       End
+      Begin VB.Menu menu_BoloBiasSweep 
+         Caption         =   "Bolometer with Bias Sweep"
+      End
       Begin VB.Menu menu_view_calibration 
          Caption         =   "Thermometer Calibration"
+      End
+      Begin VB.Menu menu_view_PulseAttenuator 
+         Caption         =   "Pulse Attenuator"
       End
       Begin VB.Menu menu_view_image 
          Caption         =   "Phonon Image"
       End
+      Begin VB.Menu menu_experiments_Scope_Trace 
+         Caption         =   "Scope Trace"
+      End
       Begin VB.Menu menu_view_linescan 
          Caption         =   "Linescan"
+      End
+      Begin VB.Menu menu_view_ScanSweep 
+         Caption         =   "Scan Sweep"
       End
       Begin VB.Menu menu_experiments_IVSweep 
          Caption         =   "IV Sweep"
@@ -56,6 +68,9 @@ Begin VB.MDIForm MDIForm1
       End
       Begin VB.Menu menu_view_eclipse 
          Caption         =   "Eclipse"
+      End
+      Begin VB.Menu menu_view_newportstepper 
+         Caption         =   "Newport stepper"
       End
       Begin VB.Menu menu_view_nanostep 
          Caption         =   "NanoStepper"
@@ -183,6 +198,10 @@ Private Sub menu_view_nanostep_Click()
     StepperControlForm.Show
 End Sub
 
+Private Sub menu_view_newportstepper_Click()
+newport_stepper.Show
+End Sub
+
 Private Sub menu_view_pointgraph_Click()
     GraphForm.Show
 End Sub
@@ -199,6 +218,18 @@ Private Sub menu_view_calibration_Click()
     Calibration.Show
 End Sub
 
+Private Sub menu_experiments_Scope_Trace_Click()
+    Scope_Trace.Show
+End Sub
+Private Sub menu_view_PulseAttenuator_Click()
+    PulseAttenuation.Show
+End Sub
+Private Sub menu_view_ScanSweep_Click()
+    ScanSweep.Show
+End Sub
+Private Sub menu_BoloBiasSweep_Click()
+    BoloBiasSweep.Show
+End Sub
 Private Sub vis_Click()
 
     If StepperControlForm.MG17Motor1.Visible = False Then

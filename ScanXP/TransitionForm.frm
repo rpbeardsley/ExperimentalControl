@@ -12,7 +12,7 @@ Begin VB.Form TransitionForm
    MinButton       =   0   'False
    ScaleHeight     =   3240
    ScaleWidth      =   6870
-   Begin VB.ComboBox Combo2 
+   Begin VB.ComboBox Combo1 
       Height          =   315
       Left            =   3480
       Style           =   2  'Dropdown List
@@ -123,6 +123,8 @@ Private Sub Command1_Click()
     Dim sineout
     Dim transX()
     Dim transY()
+    Dim Thermometer As Integer
+    
     
     addr1 = Int(Val(Text2.Text))
     addr2 = Int(Val(Text3.Text))
@@ -138,8 +140,18 @@ Private Sub Command1_Click()
     n = 0
 loopstart:
         t = Timer + 1
-
-        temp = AutoGetTemperature(addr1, model, TEMP_CONTROL_TYPE, sineout)
+        
+        'old code
+        'temp = AutoGetTemperature(addr1, model, TEMP_CONTROL_TYPE, sineout)
+        'end of old code
+        
+        'new code
+        sineout = 1
+        reading = -1
+        Thermometer = 2 'cernox = 1,  Allen Bradley = 2
+        temp = AutoGetTemperature(TEMP_CONTROL_LOCKIN, TEMP_CONTROL_LOCKIN_MODEL, Thermometer, sineout, reading)
+        'end of new code
+        
         r = DVM34401A.DVM34401A_GetSample(addr2)
     
         Print #1, Format(temp) + "," + r

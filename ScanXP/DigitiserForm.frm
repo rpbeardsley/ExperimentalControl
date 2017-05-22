@@ -338,7 +338,7 @@ Private Sub Combo2_Click()
 TriggerThreshComboUpdate
 End Sub
 
-Private Sub Command1_Click()
+Public Sub Command1_Click()
 
 GetSettingsFromDigitiser
 
@@ -599,8 +599,6 @@ End Sub
 Private Sub Command3_Click()
 Digitiser.DigitiserSettings
 End Sub
-
-
 
 Private Sub Command4_Click()
     a = Globals.SaveDialog

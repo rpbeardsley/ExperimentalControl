@@ -188,6 +188,14 @@ End If
 
 End Sub
 
+
+
+Private Sub Combo3_Change()
+
+TEMP_CONTROL_TYPE = Combo3.ListIndex + 1
+
+End Sub
+
 Private Sub Command1_Click()
 TEMP_CONTROL_LOCKIN = Int(Val(Text1.Text))
 FIXED_RESISTANCE_IN_CERNOX_CIRCUIT = CDec(Text2.Text)
@@ -203,12 +211,13 @@ TEMP_CONTROL_TYPE = Combo3.ListIndex + 1
 End Sub
 
 Private Sub Command2_Click()
-c = (0.001) ^ (2 - CInt(Combo1.ListIndex))
-t = GetTemperature(CDec(Text3.Text), c * CDec(Text4.Text), TEMP_CONTROL_TYPE)
-Label6.Caption = Format(t, "0.000")
+    TEMP_CONTROL_TYPE = Combo3.ListIndex + 1
+    c = (0.001) ^ (2 - CInt(Combo1.ListIndex))
+    t = GetTemperature(CDec(Text3.Text), c * CDec(Text4.Text), TEMP_CONTROL_TYPE)
+    Label6.Caption = Format(t, "0.000")
 End Sub
 
-Private Sub Form_Load()
+Private Sub Form_load()
 
 Text1.Text = TEMP_CONTROL_LOCKIN
 Text2.Text = FIXED_RESISTANCE_IN_CERNOX_CIRCUIT

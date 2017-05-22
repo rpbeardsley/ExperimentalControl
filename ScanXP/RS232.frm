@@ -13,6 +13,22 @@ Begin VB.Form RS232
    MinButton       =   0   'False
    ScaleHeight     =   4815
    ScaleWidth      =   6570
+   Begin VB.TextBox Text2 
+      Height          =   375
+      Left            =   2040
+      TabIndex        =   6
+      Text            =   "1VA?"
+      Top             =   3480
+      Width           =   4095
+   End
+   Begin VB.CommandButton Command3 
+      Caption         =   "Go"
+      Height          =   495
+      Left            =   480
+      TabIndex        =   5
+      Top             =   3480
+      Width           =   1215
+   End
    Begin VB.CommandButton Command2 
       Caption         =   "Read"
       Height          =   495
@@ -44,6 +60,14 @@ Begin VB.Form RS232
       _Version        =   393216
       DTREnable       =   -1  'True
    End
+   Begin VB.Label Label3 
+      Caption         =   "Newport Stage Send Request and Receive Response"
+      Height          =   255
+      Left            =   480
+      TabIndex        =   7
+      Top             =   3000
+      Width           =   4095
+   End
    Begin VB.Label Label2 
       Height          =   495
       Left            =   1560
@@ -69,7 +93,7 @@ Private Sub Command1_Click()
 MSComm1.CommPort = 1
 MSComm1.DTREnable = 1
 MSComm1.EOFEnable = False
-MSComm1.Settings = "19200,n,8,2"
+MSComm1.settings = "19200,n,8,2"
 
 MSComm1.PortOpen = True
 
@@ -79,6 +103,21 @@ MSComm1.PortOpen = False
 
 End Sub
 
+Public Function RS232_Send(port As Integer, settings As String, command As String)
+
+MSComm1.CommPort = port
+MSComm1.DTREnable = 1
+MSComm1.EOFEnable = False
+MSComm1.settings = settings
+
+MSComm1.PortOpen = True
+
+MSComm1.Output = command + vbCr
+
+MSComm1.PortOpen = False
+
+End Function
+
 Private Sub Command2_Click()
 
 timout = 1
@@ -86,7 +125,7 @@ timout = 1
 MSComm1.CommPort = 1
 MSComm1.DTREnable = True
 MSComm1.EOFEnable = False
-MSComm1.Settings = "19200,O,8,2"
+MSComm1.settings = "19200,O,8,2"
 MSComm1.Handshaking = comXOnXoff
 MSComm1.RThreshold = 0 'Do not generate OnComm event when characters arrive
 MSComm1.InputLen = 0 'Read whole buffer each time input is queried
@@ -147,6 +186,82 @@ MSComm1.PortOpen = False
 
 End Sub
 
+Public Function RS232_SendRequest_and_Receive(port As Integer, request As String, settings As String) As String
+
+MSComm1.CommPort = port
+MSComm1.DTREnable = 1
+MSComm1.EOFEnable = False
+MSComm1.settings = settings
+MSComm1.Handshaking = 2
+
+MSComm1.RThreshold = 0 'Do not generate OnComm event when characters arrive
+MSComm1.InputLen = 0 'Read whole buffer each time input is queried
+MSComm1.RTSEnable = True
+
+MSComm1.PortOpen = True
+
+MSComm1.Output = request + vbCr
+
+timout = 1
+
+t = Timer + timout
+stat = -2
+buff = ""
+While stat = -2
+
+    If Timer > t Then stat = -1
+    
+    If MSComm1.InBufferCount > 0 Then
+        tmpbuff = MSComm1.Input
+        
+        
+        'Stop checking when we get carriage return character
+        For a = 1 To Len(tmpbuff)
+            If Asc(Mid(tmpbuff, a, 1)) = 13 Then
+                buff = buff + Mid(tmpbuff, 1, a - 1)
+                stat = Len(buff)
+                GoTo nxt
+            End If
+        Next a
+        
+        If stat < 0 Then buff = buff + tmpbuff
+nxt:
+    End If
+    
+    DoEvents
+    
+Wend
+
+MSComm1.PortOpen = False
+
+
+If stat > -1 Then
+    RS232_SendRequest_and_Receive = buff
+Else
+    Label1.Caption = ""
+    MsgBox "Timeout Waiting for RS232 device to respond.", vbOKOnly Or vbExclamation, "Error"
+End If
+
+
+
+End Function
+
+Private Sub Command3_Click()
+
+Dim port As Integer
+Dim request As String
+Dim settings As String
+
+port = 3
+settings = "921600,n,8,1"
+request = Text2.Text
+
+resp = RS232_SendRequest_and_Receive(port, request, settings)
+
+Label1.Caption = resp
+
+End Sub
+
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
 
     If UnloadMode = 0 Then
@@ -155,4 +270,5 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
     End If
 
 End Sub
+
 

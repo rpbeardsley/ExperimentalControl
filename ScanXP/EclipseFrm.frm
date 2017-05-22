@@ -136,6 +136,69 @@ Private numpoints
 Private datx() As Double
 Private daty() As Double
 
+Public Function GetAndSaveEclipseTrace(fname As String)
+
+    'Acquire the data
+    If Option1.value = True Then
+        BiasSwitch.SetBias (0)
+        If Val(Text1.Text) > 0 Then Pause (Val(Text1.Text))
+    ElseIf Option2.value = True Then
+        BiasSwitch.SetBias (1)
+        If Val(Text1.Text) > 0 Then Pause (Val(Text1.Text))
+    End If
+    
+    Eclipse.GetEclipseTrace xdata, ydata
+    If Option3.value = False Then
+        BiasSwitch.FlipBias
+        If Val(Text1.Text) > 0 Then Pause (Val(Text1.Text))
+        Eclipse.GetEclipseTrace xdata2, ydata2
+    End If
+    
+    ReDim datx(0 To (UBound(xdata) - LBound(xdata)))
+    ReDim daty(0 To (UBound(xdata) - LBound(xdata)))
+    
+    If Option3.value = False Then
+    For a = LBound(xdata) To UBound(xdata)
+        ydata(a) = ydata(a) - ydata2(a)
+    Next a
+    End If
+    
+    b = 0
+    For a = LBound(xdata) To UBound(xdata)
+        datx(b) = xdata(a)
+        daty(b) = ydata(a)
+        b = b + 1
+    Next a
+
+    'Plot the data
+    TraceForm.Show
+    TraceForm.PlotTrace xdata, ydata
+    
+    'Save the data
+    If fname <> "" Then
+        Open fname For Output As #1
+        
+        spoint = LBound(datx) + Int(2 * Val(Text2.Text))
+        If spoint < 0 Then spoint = 0
+        If Mid(LCase(Combo1.Text), 1, 3) = "end" Then
+            fpoint = UBound(datx)
+        Else
+            fpoint = Int(2 * Val(Combo1.Text))
+            If fpoint > UBound(datx) Then fpoint = UBound(datx)
+        End If
+        If spoint > fpoint Then
+            tmppoint = fpoint: fpoint = spoint: spoint = tmppoint
+        End If
+        
+        For a = spoint To fpoint
+            Print #1, Format(datx(a)) + ", " + Format(daty(a))
+        Next a
+        Close #1
+    End If
+
+
+End Function
+
 Private Sub Command1_Click()
 
     If Option1.value = True Then

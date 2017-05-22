@@ -1,12 +1,15 @@
 VERSION 5.00
 Begin VB.Form Calibration 
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "Thrmometer Calibration"
    ClientHeight    =   3435
-   ClientLeft      =   60
-   ClientTop       =   450
+   ClientLeft      =   45
+   ClientTop       =   435
    ClientWidth     =   5790
    LinkTopic       =   "Form2"
+   MaxButton       =   0   'False
    MDIChild        =   -1  'True
+   MinButton       =   0   'False
    ScaleHeight     =   3435
    ScaleWidth      =   5790
    Begin VB.ComboBox Combo1 
